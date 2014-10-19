@@ -1,0 +1,16 @@
+﻿<Window x:Name="Loginin" x:Class="Home_managment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Вхід" Height="133" Width="294" WindowStartupLocation="CenterScreen" Closed="Loginin_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="102*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="InputLogin" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" ToolTip="Логін" Grid.ColumnSpan="2" KeyUp="InputLogin_KeyUp"/>
+        <PasswordBox x:Name="InputPassword" HorizontalAlignment="Left" Height="25" Margin="10,50,0,0" VerticalAlignment="Top" Width="149" ToolTip="Пароль" Grid.ColumnSpan="2" KeyUp="InputPassword_KeyUp"/>
+        <Button x:Name="Login" Content="Вхід" HorizontalAlignment="Left" Height="25" Margin="96,10,0,0" VerticalAlignment="Top" Width="96" Grid.Column="1" Click="buttonGoClick"/>
+        <Button x:Name="Register" Content="Реєстрація" HorizontalAlignment="Left" Height="25" Margin="96,50,0,0" VerticalAlignment="Top" Width="96" Grid.Column="1" Click="Register_Click"/>
+
+    </Grid>
+</Window>

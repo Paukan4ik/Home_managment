@@ -1,0 +1,20 @@
+c:\users\антон\documents\visual studio 2012\Projects\Home_managment\Home_managment\bin\Debug\Home_managment.exe.config
+D:\Курсач\Home_managment\Home_managment\bin\Debug\Home_managment.exe.config
+D:\Курсач\Home_managment\Home_managment\bin\Debug\Home_managment.exe
+D:\Курсач\Home_managment\Home_managment\bin\Debug\Home_managment.pdb
+D:\Курсач\Home_managment\Home_managment\obj\Debug\App.g.cs
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment_MarkupCompile.cache
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.g.resources
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.Properties.Resources.resources
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.csproj.GenerateResource.Cache
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.exe
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.pdb
+D:\Курсач\Home_managment\Home_managment\bin\Debug\HomeManagment.sdf
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment.csprojResolveAssemblyReference.cache
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Home_managment_Content.g.cs
+D:\Курсач\Home_managment\Home_managment\obj\Debug\admin.baml
+D:\Курсач\Home_managment\Home_managment\obj\Debug\admin.g.cs
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Login.baml
+D:\Курсач\Home_managment\Home_managment\obj\Debug\Login.g.cs
+D:\Курсач\Home_managment\Home_managment\obj\Debug\RegisterForm.baml
+D:\Курсач\Home_managment\Home_managment\obj\Debug\RegisterForm.g.cs
