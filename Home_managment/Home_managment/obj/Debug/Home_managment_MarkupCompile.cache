@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Курсач\Home_managment\Home_managment\obj\Debug\
+M:\Home_managment-master\Home_managment\Home_managment\obj\Debug\
 Home_managment
 none
 false
 DEBUG;TRACE
-D:\Курсач\Home_managment\Home_managment\App.xaml
-31577320616
+M:\Home_managment-master\Home_managment\Home_managment\App.xaml
+51221658003
 1213274210
-9-1526556685
+11-52155802
 13-235437864
-Login.xaml;admin.xaml;RegisterForm.xaml;
+Login.xaml;admin.xaml;Phone.xaml;RegisterForm.xaml;user.xaml;
 splash_screen.jpg
 False
 

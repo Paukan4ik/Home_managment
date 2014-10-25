@@ -1,0 +1,14 @@
+﻿<Window x:Class="Home_managment.user"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Бланк реєстрації" Height="216.418" Width="300" Closed="Window_Closed_1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Print" Content="Друк" HorizontalAlignment="Left" Height="57" Margin="10,119,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.473,0.337" Click="Print_Click"/>
+        <Button x:Name="Preview" Content="Попередній перегляд" HorizontalAlignment="Left" Height="57" Margin="157,118,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.473,0.337"/>
+        <TextBlock x:Name="Message" HorizontalAlignment="Left" Height="103" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>
+
+    </Grid>
+</Window>

@@ -53,14 +53,26 @@ namespace Home_managment
 
             if (InputLogin.Text == con.Login && InputPassword.Password == con.Password)
             {
+                this.Hide();
                if (con.Role == "Admin" || con.Role=="admin")
                 {
                     Window1 adminFrame = new Window1();
+                    adminFrame.tablesChn.Visibility = Visibility.Visible;
+                    adminFrame.tablesmoder.Visibility = Visibility.Hidden;
                     adminFrame.ShowDialog();
-                }
+               }
+               if (con.Role == "Moder" || con.Role == "moder")
+               {
+                   Window1 adminFrame = new Window1();
+                   adminFrame.tablesChn.Visibility = Visibility.Hidden;
+                   adminFrame.tablesmoder.Visibility = Visibility.Visible;
+                   adminFrame.ShowDialog();
+               }
                if (con.Role == "user" || con.Role == "User")
                 {
-                    
+                   
+                   Phone phonecheck = new Phone();
+                    phonecheck.ShowDialog();
                 }
             }
             else

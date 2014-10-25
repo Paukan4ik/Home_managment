@@ -4,11 +4,11 @@
         Title="Вхід" Height="133" Width="294" WindowStartupLocation="CenterScreen" Closed="Loginin_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="41*"/>
-            <ColumnDefinition Width="102*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="199*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="InputLogin" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" ToolTip="Логін" Grid.ColumnSpan="2" KeyUp="InputLogin_KeyUp"/>
-        <PasswordBox x:Name="InputPassword" HorizontalAlignment="Left" Height="25" Margin="10,50,0,0" VerticalAlignment="Top" Width="149" ToolTip="Пароль" Grid.ColumnSpan="2" KeyUp="InputPassword_KeyUp"/>
+        <TextBox x:Name="InputLogin" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="149" ToolTip="Логін" Grid.ColumnSpan="2" KeyUp="InputLogin_KeyUp" TextWrapping="Wrap" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="InputPassword" HorizontalAlignment="Left" Height="25" Margin="10,50,0,0" VerticalAlignment="Top" Width="149" ToolTip="Пароль" Grid.ColumnSpan="2" KeyUp="InputPassword_KeyUp" VerticalContentAlignment="Center"/>
         <Button x:Name="Login" Content="Вхід" HorizontalAlignment="Left" Height="25" Margin="96,10,0,0" VerticalAlignment="Top" Width="96" Grid.Column="1" Click="buttonGoClick"/>
         <Button x:Name="Register" Content="Реєстрація" HorizontalAlignment="Left" Height="25" Margin="96,50,0,0" VerticalAlignment="Top" Width="96" Grid.Column="1" Click="Register_Click"/>
 

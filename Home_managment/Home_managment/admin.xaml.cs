@@ -27,23 +27,121 @@ namespace Home_managment
         public Window1()
         {
             InitializeComponent();
+            
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
         {
             App.Current.Shutdown();
-            SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
-            strConn["Data Source"] = "HomeManagment.sdf";
-            SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
-            SqlCeCommand cmd = new SqlCeCommand("Select * From [Users]", ConnCe);
-            tables.DataContext = cmd;
+            
         }
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
           
-            if (tablesChn.Text == "Користувачі")
-            {  }
+            if (tablesChn.SelectedIndex == 0)
+            {
+                usersDataGrid.Visibility = Visibility.Visible;
+                flatsDataGrid.Visibility = Visibility.Hidden;
+                оплатаDataGrid.Visibility = Visibility.Hidden;
+                послугиDataGrid.Visibility = Visibility.Hidden;
+            }
+            if (tablesChn.SelectedIndex == 1)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Hidden;
+                оплатаDataGrid.Visibility = Visibility.Hidden;
+                послугиDataGrid.Visibility = Visibility.Visible;
+            }
+            if (tablesChn.SelectedIndex == 2)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Hidden;
+                оплатаDataGrid.Visibility = Visibility.Visible;
+                послугиDataGrid.Visibility = Visibility.Hidden;
+            }
+            if (tablesChn.SelectedIndex == 3)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Visible;
+                оплатаDataGrid.Visibility = Visibility.Hidden;
+                послугиDataGrid.Visibility = Visibility.Hidden;
+            }
+            if (tablesmoder.SelectedIndex == 0)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Hidden;
+                оплатаDataGrid.Visibility = Visibility.Hidden;
+                послугиDataGrid.Visibility = Visibility.Visible;
+            }
+            if (tablesmoder.SelectedIndex == 1)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Hidden;
+                оплатаDataGrid.Visibility = Visibility.Visible;
+                послугиDataGrid.Visibility = Visibility.Hidden;
+            }
+            if (tablesmoder.SelectedIndex == 2)
+            {
+                usersDataGrid.Visibility = Visibility.Hidden;
+                flatsDataGrid.Visibility = Visibility.Visible;
+                оплатаDataGrid.Visibility = Visibility.Hidden;
+                послугиDataGrid.Visibility = Visibility.Hidden;
+            }
+
         }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+            Home_managment.HomeManagmentDataSet homeManagmentDataSet = ((Home_managment.HomeManagmentDataSet)(this.FindResource("homeManagmentDataSet")));
+            // Загрузить данные в таблицу Flats. Можно изменить этот код как требуется.
+            Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter homeManagmentDataSetFlatsTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter();
+            homeManagmentDataSetFlatsTableAdapter.Fill(homeManagmentDataSet.Flats);
+            System.Windows.Data.CollectionViewSource flatsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("flatsViewSource")));
+            flatsViewSource.View.MoveCurrentToFirst();
+            // Загрузить данные в таблицу Users. Можно изменить этот код как требуется.
+            Home_managment.HomeManagmentDataSetTableAdapters.UsersTableAdapter homeManagmentDataSetUsersTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.UsersTableAdapter();
+            homeManagmentDataSetUsersTableAdapter.Fill(homeManagmentDataSet.Users);
+            System.Windows.Data.CollectionViewSource usersViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("usersViewSource")));
+            usersViewSource.View.MoveCurrentToFirst();
+            // Загрузить данные в таблицу Оплата. Можно изменить этот код как требуется.
+            Home_managment.HomeManagmentDataSetTableAdapters.ОплатаTableAdapter homeManagmentDataSetОплатаTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.ОплатаTableAdapter();
+            homeManagmentDataSetОплатаTableAdapter.Fill(homeManagmentDataSet.Оплата);
+            System.Windows.Data.CollectionViewSource оплатаViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("оплатаViewSource")));
+            оплатаViewSource.View.MoveCurrentToFirst();
+            // Загрузить данные в таблицу Послуги. Можно изменить этот код как требуется.
+            Home_managment.HomeManagmentDataSetTableAdapters.ПослугиTableAdapter homeManagmentDataSetПослугиTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.ПослугиTableAdapter();
+            System.Windows.Data.CollectionViewSource послугиViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("послугиViewSource")));
+            послугиViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+           
+
+            SqlCeDataAdapter sqlda=new SqlCeDataAdapter();
+            try
+            {
+                //sqlda.Update((DataTable)usersDataGrid.ItemsSource);
+                //flatsDataGrid.Items.Refresh();
+                //оплатаDataGrid.Items.Refresh();
+                //    послугиDataGrid.Items.Refresh();
+                //sqlda.Update((DataTable)usersDataGrid.ItemsSource);
+                //    sqlda.Update((DataTable)flatsDataGrid.ItemsSource);
+                //    sqlda.Update((DataTable)оплатаDataGrid.ItemsSource);
+                //    sqlda.Update((DataTable)послугиDataGrid.ItemsSource);
+                 
+                MessageBox.Show("Изменения в базе данных выполнены!",
+                  "Уведомление о результатах");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Изменения в базе данных выполнить не удалось!",
+                  "Уведомление о результатах");
+            }
+        }
+
+
     }
 }
