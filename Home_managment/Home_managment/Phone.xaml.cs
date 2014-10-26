@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Home_managment
 {
     /// <summary>
@@ -23,6 +24,8 @@ namespace Home_managment
         {
             InitializeComponent();
             this.Title = "Підтвердження";
+            phone.Focus();
+            this.Background = Home_managment.Properties.Settings.Default.Color;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -39,10 +42,7 @@ namespace Home_managment
                 Print.Height = 57;
                 Go.Visibility = Visibility.Hidden;
                 phone.Visibility = Visibility.Hidden;
-                Print.Width = 125;
-                Preview.Width = 125;
-                Preview.Height = 57;
-                Preview.Margin=new Thickness(157,252,0,0);
+                Print.Width = 272;
                 Print.Margin = new Thickness(5, 252, 0, 0);
                 label.Height = 188;
                 label.Width = 272;
@@ -59,6 +59,7 @@ namespace Home_managment
         }
         private void PrintB(object sender, EventArgs e)
         {       
+
             Connect con = new Connect();
                 con.Pay(phone.Text);
                 label.Width = 580;
@@ -69,13 +70,22 @@ namespace Home_managment
                 if (testPrint.ShowDialog() == true)
                 {
                     //Где border1 - это лист документа
-                    testPrint.PrintVisual(label, "Счёт");
+                   
+                  //  testPrint.PrintDocument(, "Счёт");
                 }
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void Go_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Button_Click_1(sender, e);
+            }
         }
     }
 }

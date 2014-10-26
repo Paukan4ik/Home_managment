@@ -1,0 +1,16 @@
+﻿<Window x:Class="Home_managment.settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Налаштування кольору форми" Height="183.582" Width="300">
+    <Grid>
+        <ComboBox x:Name="colors" HorizontalAlignment="Left" Height="52" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" ToolTip="Оберіть колір">
+            <ComboBoxItem Content="Червоний"/>
+            <ComboBoxItem Cursor="Hand" Content="Жовтий"/>
+            <ComboBoxItem Content="Синій"/>
+            <ComboBoxItem Content="Сірий"/>
+            <ComboBoxItem Content="Стандартний"/>
+        </ComboBox>
+        <Button x:Name="Save" Content="Зберегти" HorizontalAlignment="Left" Height="52" Margin="10,92,0,0" VerticalAlignment="Top" Width="272" Click="Save_Click"/>
+
+    </Grid>
+</Window>

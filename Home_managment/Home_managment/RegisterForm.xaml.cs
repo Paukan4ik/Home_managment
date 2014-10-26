@@ -23,6 +23,7 @@ namespace Home_managment
         public Window2()
         {
             InitializeComponent();
+            this.Background = Home_managment.Properties.Settings.Default.Color;
         }
 
         private void CancelBut_Click(object sender, RoutedEventArgs e)

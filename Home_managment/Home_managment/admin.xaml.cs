@@ -27,7 +27,7 @@ namespace Home_managment
         public Window1()
         {
             InitializeComponent();
-            
+            this.Background = Home_managment.Properties.Settings.Default.Color;      
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
@@ -140,6 +140,12 @@ namespace Home_managment
                 MessageBox.Show("Изменения в базе данных выполнить не удалось!",
                   "Уведомление о результатах");
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            settings sett = new settings();
+            sett.ShowDialog();
         }
 
 

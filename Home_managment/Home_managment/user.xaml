@@ -6,9 +6,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Print" Content="Друк" HorizontalAlignment="Left" Height="57" Margin="10,119,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.473,0.337" Click="Print_Click"/>
-        <Button x:Name="Preview" Content="Попередній перегляд" HorizontalAlignment="Left" Height="57" Margin="157,118,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.473,0.337"/>
-        <TextBlock x:Name="Message" HorizontalAlignment="Left" Height="103" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>
+        <Button x:Name="Print" Content="Заповнити бланк" HorizontalAlignment="Left" Height="57" Margin="10,119,0,0" VerticalAlignment="Top" Width="272" RenderTransformOrigin="0.473,0.337" Click="Print_Click"/>
+        <TextBlock x:Name="Message" HorizontalAlignment="Left" Height="103" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"><InlineUIContainer>
+        		<WebBrowser x:Name="Shower" Height="101" Width="234"/>
+        	</InlineUIContainer></TextBlock>
 
     </Grid>
 </Window>

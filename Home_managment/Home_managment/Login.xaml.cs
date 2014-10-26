@@ -27,6 +27,8 @@ namespace Home_managment
         public MainWindow()
         {
             InitializeComponent();
+            InputLogin.Focus();
+            this.Background = Home_managment.Properties.Settings.Default.Color;
         }
 
  

@@ -32,5 +32,17 @@ namespace Home_managment.Properties {
                 return ((string)(this["HomeManagmentConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFFFF")]
+        public global::System.Windows.Media.SolidColorBrush Color {
+            get {
+                return ((global::System.Windows.Media.SolidColorBrush)(this["Color"]));
+            }
+            set {
+                this["Color"] = value;
+            }
+        }
     }
 }

@@ -23,12 +23,13 @@ namespace Home_managment
         {
             InitializeComponent();
             Message.Text = "Для реєстрації/внесення Вших данних надішліть лист з заповненим бланком до  Вашого Районного ЖКГ";
-            
+            this.Background = Home_managment.Properties.Settings.Default.Color; 
         }
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Shower.Navigate(AppDomain.CurrentDomain.BaseDirectory + "Blank.docx");
+            //   this.Close();
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
