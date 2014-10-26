@@ -46,9 +46,10 @@ namespace Home_managment
                 Print.Margin = new Thickness(5, 252, 0, 0);
                 label.Height = 188;
                 label.Width = 272;
-                label.Margin = new Thickness(8,10,0,0);
+                label.Margin = new Thickness(8,50,0,0);
                 label.Text="Шановний(а) "+con.surname+" "+con.name+" "+con.lastname+" Вам виставлено рахунок за користування комунальнимим та додатковими послугами по адресі вул. "+con.street+" ,буд. "+con.home+" кв. "+con.flat+" ."+"За поточний місяць Вам виставоена плата на суму "+con.summ+" грн. з урахуванням ПДВ без внеску до ПФ";
                 Print.Click += new RoutedEventHandler(PrintB);
+                Menu.Visibility = Visibility.Visible;
             }
             else
             {
@@ -86,6 +87,15 @@ namespace Home_managment
             {
                 Button_Click_1(sender, e);
             }
+        }
+        private void Button_Click_Pro(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Додаток розроблений спеціально для Житлово-Комунальних установ! \n©2014 by Paukan4ik");
+        }
+
+        private void Button_Click_Pay(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Способи оплати: \n1.Через термінал \n2.В відділенні банку \n3.В відділенні ЖЕК \n4.Через платіжні системи Приват24");
         }
     }
 }

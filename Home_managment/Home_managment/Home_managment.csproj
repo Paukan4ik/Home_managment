@@ -84,9 +84,6 @@
     <Compile Include="RegisterForm.xaml.cs">
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="settings.xaml.cs">
-      <DependentUpon>settings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="user.xaml.cs">
       <DependentUpon>user.xaml</DependentUpon>
     </Compile>
@@ -112,10 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

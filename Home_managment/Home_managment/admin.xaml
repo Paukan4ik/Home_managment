@@ -12,8 +12,8 @@
     </Window.Resources>
     <Grid x:Name="adminForm" Margin="0,0,2,0" DataContext="{StaticResource flatsViewSource}">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="473">
-            <Button Content="Налаштування" Height="36" Click="Button_Click_1"/>
-            <Button Content="Про нас" Height="36" Width="61"/>
+            <Button Content="Про нас" Height="36" Width="61" Click="Button_Click_1"/>
+            <Button Content="Способи оплати" Height="36" Width="109" Click="Button_Click_2"/>
         </Menu>
         <ComboBox x:Name="tablesChn" HorizontalAlignment="Left" Height="27" Margin="7,51,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="ComboBox_SelectionChanged_1" Visibility="Hidden">
             <ComboBoxItem Content="Користувачі"/>

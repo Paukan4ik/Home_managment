@@ -116,5 +116,3 @@ D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\admin.baml
 D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\Home_managment.g.resources
 D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\Home_managment.Properties.Resources.resources
 D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\Home_managment.csproj.GenerateResource.Cache
-D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\settings.baml
-D:\GitHubProj\Home_managment\Home_managment\Home_managment\obj\Debug\settings.g.cs

@@ -16,7 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
+using System.Threading;
 namespace Home_managment
 {
     /// <summary>
@@ -90,10 +91,18 @@ namespace Home_managment
             }
 
         }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Час на перерву! \n База не працює! ");
+            Thread.Sleep(2000); 
+        }
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 50);
+            dispatcherTimer.Start();
             Home_managment.HomeManagmentDataSet homeManagmentDataSet = ((Home_managment.HomeManagmentDataSet)(this.FindResource("homeManagmentDataSet")));
             // Загрузить данные в таблицу Flats. Можно изменить этот код как требуется.
             Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter homeManagmentDataSetFlatsTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter();
@@ -144,8 +153,12 @@ namespace Home_managment
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            settings sett = new settings();
-            sett.ShowDialog();
+            MessageBox.Show("Додаток розроблений спеціально для Житлово-Комунальних установ! \n©2014 by Paukan4ik");
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Способи оплати: \n1.Через термінал \n2.В відділенні банку \n3.В відділенні ЖЕК \n4.Через платіжні системи Приват24");
         }
 
 
