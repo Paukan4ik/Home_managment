@@ -228,5 +228,114 @@ namespace Home_managment
             ConnCe.Close();
             ConnCe.Dispose();
         }
+        public void ChangeRole(string role, string logins)
+        {
+            SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+            strConn["Data Source"] = "../../HomeManagment.sdf";
+            SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+            try
+            {
+                ConnCe.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            using (SqlCeCommand cmd = new SqlCeCommand("UPDATE [Users]" +
+                  "Set Role = @role where Login = '" + logins + "'", ConnCe))
+            { 
+                    cmd.Parameters.AddWithValue("@role", role);
+                    cmd.ExecuteNonQuery();
+            }
+            ConnCe.Close();
+            ConnCe.Dispose();
+        }
+
+        public void NewAbon(string street, string home, string flat, string surname,string name,string lastname,int phone, string summ)
+        {
+            SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+            strConn["Data Source"] = "../../HomeManagment.sdf";
+            SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+            try
+            {
+                ConnCe.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Flats]" +
+                "(Street,Home,Flat,Surname,Name,Lastname,Phone,Sum) Values (@Street,@Home,@Flat,@Surname,@Name,@Lastname,@Phone,@Summ)", ConnCe))
+            {
+                cmd.Parameters.AddWithValue("@Street", street);
+                cmd.Parameters.AddWithValue("@Home", home);
+                cmd.Parameters.AddWithValue("@Flat", flat);
+                cmd.Parameters.AddWithValue("@Surname",surname);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Lastname", lastname);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Sum", summ);
+                cmd.ExecuteNonQuery();
+            }
+
+            ConnCe.Close();
+            ConnCe.Dispose();
+        }
+        public void NewPosl(string nazv, string price)
+        {
+            SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+            strConn["Data Source"] = "../../HomeManagment.sdf";
+            SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+            try
+            {
+                ConnCe.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Послуги]" +
+                "(Назва,Ціна) Values (@Nazv,@price)", ConnCe))
+            {
+                cmd.Parameters.AddWithValue("@Nazv", nazv);
+                cmd.Parameters.AddWithValue("@price", price);           
+                cmd.ExecuteNonQuery();
+            }
+
+            ConnCe.Close();
+            ConnCe.Dispose();
+        }
+        public void NewPay(object regtime, object my)
+        {
+            SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+            strConn["Data Source"] = "../../HomeManagment.sdf";
+            SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+            try
+            {
+                ConnCe.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Оплата]" +
+                "(Дата Реєстрації,Місяць/Рік) Values (@regtime,@my)", ConnCe))
+            {
+                cmd.Parameters.AddWithValue("@regtime", regtime);
+                cmd.Parameters.AddWithValue("@my", my);
+                cmd.ExecuteNonQuery();
+            }
+
+            ConnCe.Close();
+            ConnCe.Dispose();
+        }
+
     }
 }

@@ -9,72 +9,111 @@
         <CollectionViewSource x:Key="usersViewSource" Source="{Binding Users, Source={StaticResource homeManagmentDataSet}}"/>
         <CollectionViewSource x:Key="оплатаViewSource" Source="{Binding Оплата, Source={StaticResource homeManagmentDataSet}}"/>
         <CollectionViewSource x:Key="послугиViewSource" Source="{Binding Послуги, Source={StaticResource homeManagmentDataSet}}"/>
+        <CollectionViewSource x:Key="полсугиViewSource" Source="{Binding Полсуги, Source={StaticResource homeManagmentDataSet}}"/>
     </Window.Resources>
     <Grid x:Name="adminForm" Margin="0,0,2,0" DataContext="{StaticResource flatsViewSource}">
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="473">
             <Button Content="Про нас" Height="36" Width="61" Click="Button_Click_1"/>
             <Button Content="Способи оплати" Height="36" Width="109" Click="Button_Click_2"/>
         </Menu>
-        <ComboBox x:Name="tablesChn" HorizontalAlignment="Left" Height="27" Margin="7,51,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="ComboBox_SelectionChanged_1" Visibility="Hidden">
+        <ComboBox x:Name="tablesChn" HorizontalAlignment="Left" Height="27" Margin="7,51,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="ComboBox_SelectionChanged_1" Visibility="Hidden">
             <ComboBoxItem Content="Користувачі"/>
             <ComboBoxItem Content="Послуги"/>
             <ComboBoxItem Content="Оплата"/>
             <ComboBoxItem Content="Квартири"/>
         </ComboBox>
-        <ComboBox x:Name="tablesmoder" HorizontalAlignment="Left" Height="27" Margin="7,51,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="ComboBox_SelectionChanged_1" Visibility="Hidden">
+        <ComboBox x:Name="tablesmoder" HorizontalAlignment="Left" Height="27" Margin="7,51,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="ComboBox_SelectionChanged_1" Visibility="Hidden">
             <ComboBoxItem Content="Послуги"/>
             <ComboBoxItem Content="Оплата"/>
             <ComboBoxItem Content="Квартири"/>
         </ComboBox>
-        <DataGrid x:Name="usersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource usersViewSource}}" Margin="7,108,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" IsReadOnly="True" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="loginColumn" Binding="{Binding Login}" Header="Login" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="passwordColumn" Binding="{Binding Password}" Header="Password" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn1" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="roleColumn" Binding="{Binding Role}" Header="Role" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid x:Name="оплатаDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource оплатаViewSource}}" Margin="7,108,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn2" Binding="{Binding ID}" Header="ID" IsReadOnly="True" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="дата_РеєстраціїColumn" Header="Дата Реєстрації" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Дата Реєстрації, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="_Місяць_РікColumn" Header="Місяць/Рік" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Місяць/Рік, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        <DataGrid x:Name="flatsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="7,108,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" IsReadOnly="True" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="streetColumn" Binding="{Binding Street}" Header="Street" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="homeColumn" Binding="{Binding Home}" Header="Home" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="flatColumn" Binding="{Binding Flat}" Header="Flat" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="surnameColumn" Binding="{Binding Surname}" Header="Surname" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="lastnameColumn" Binding="{Binding Lastname}" Header="Lastname" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="sumColumn" Binding="{Binding Sum}" Header="Sum" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <Button x:Name="Save" Content="Зберегти" HorizontalAlignment="Left" Height="38" Margin="400,65,0,0" VerticalAlignment="Top" Width="73" Click="Save_Click"/>
-        <DataGrid x:Name="послугиDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource послугиViewSource}}" Margin="7,108,10,10" RowDetailsVisibilityMode="VisibleWhenSelected" Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="послугаColumn" Binding="{Binding Послуга}" Header="Послуга" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="цінаColumn" Binding="{Binding Ціна}" Header="Ціна" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid x:Name="Users" HorizontalAlignment="Left" Height="362" Margin="10,108,0,0" VerticalAlignment="Top" Width="463" Visibility="Hidden">
+            <TextBox x:Name="userlogin" HorizontalAlignment="Left" Height="42" Margin="243,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" ToolTip="Логин корустувача"/>
+            <ComboBox x:Name="roles" HorizontalAlignment="Left" Height="61" Margin="243,77,0,0" VerticalAlignment="Top" Width="210">
+                <ComboBoxItem Content="Адмін"/>
+                <ComboBoxItem Content="Користувач"/>
+                <ComboBoxItem Content="Модератор"/>
+            </ComboBox>
+            <ListBox x:Name="users_list" HorizontalAlignment="Left" Height="342" Margin="10,10,0,0" VerticalAlignment="Top" Width="218"/>
+        </Grid>
+        
+        <Grid x:Name="Flats" HorizontalAlignment="Left" Height="362" Margin="10,108,0,0" VerticalAlignment="Top" Width="463" Visibility="Hidden">
+            <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="244,10,0,0" VerticalAlignment="Top" Height="295" Width="209">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Вулиця:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="streetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Будинок:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox x:Name="homeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Home, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Квартира:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBox x:Name="flatTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Flat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Прізвище:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBox x:Name="surnameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Surname, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Ім'я:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="По-батькові:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                <TextBox x:Name="lastnameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Lastname, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Телефон:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Сума:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+                <TextBox x:Name="sumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding Sum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            </Grid>
+            <ListBox x:Name="numbers" HorizontalAlignment="Left" Height="342" Margin="10,10,0,0" VerticalAlignment="Top" Width="234"/>
+        </Grid>
+        
+        <Grid x:Name="Poslugs" HorizontalAlignment="Left" Height="362" Margin="10,108,0,0" VerticalAlignment="Top" Width="463" Visibility="Hidden">
+            <ListBox x:Name="poslugi" HorizontalAlignment="Left" Height="342" Margin="10,10,0,0" VerticalAlignment="Top" Width="234"/>
+            <Grid x:Name="grid2" DataContext="{StaticResource полсугиViewSource}" HorizontalAlignment="Left" Margin="258,21,0,0" VerticalAlignment="Top" Width="195">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Назва:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="назваTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,-4,4" Grid.Row="0" Text="{Binding Назва, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="130"/>
+                <Label Content="Ціна:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="цінаTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,-5,4" Grid.Row="1" Text="{Binding Ціна, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="130"/>
+            </Grid>
+
+        </Grid>
+        <Grid x:Name="Pays" HorizontalAlignment="Left" Height="362" Margin="10,108,0,0" VerticalAlignment="Top" Width="463" Visibility="Hidden">
+            <ListBox x:Name="upays" HorizontalAlignment="Left" Height="342" Margin="10,10,0,0" VerticalAlignment="Top" Width="234"/>
+            <Grid x:Name="grid3" DataContext="{StaticResource оплатаViewSource}" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="214">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Дата Реєстрації:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <DatePicker x:Name="дата_РеєстраціїDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding Дата Реєстрації, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                <Label Content="Місяць/Рік:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <DatePicker x:Name="_Місяць_РікDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" SelectedDate="{Binding Місяць/Рік, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+        
+
 
     </Grid>
 </Window>

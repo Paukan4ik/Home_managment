@@ -25,10 +25,11 @@ namespace Home_managment
     /// </summary>
     public partial class Window1 : Window
     {
+        Connect con = new Connect();
         public Window1()
         {
             InitializeComponent();
-            this.Background = Home_managment.Properties.Settings.Default.Color;      
+            
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
@@ -42,54 +43,129 @@ namespace Home_managment
           
             if (tablesChn.SelectedIndex == 0)
             {
-                usersDataGrid.Visibility = Visibility.Visible;
-                flatsDataGrid.Visibility = Visibility.Hidden;
-                оплатаDataGrid.Visibility = Visibility.Hidden;
-                послугиDataGrid.Visibility = Visibility.Hidden;
-            }
-            if (tablesChn.SelectedIndex == 1)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Hidden;
-                оплатаDataGrid.Visibility = Visibility.Hidden;
-                послугиDataGrid.Visibility = Visibility.Visible;
-            }
-            if (tablesChn.SelectedIndex == 2)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Hidden;
-                оплатаDataGrid.Visibility = Visibility.Visible;
-                послугиDataGrid.Visibility = Visibility.Hidden;
-            }
-            if (tablesChn.SelectedIndex == 3)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Visible;
-                оплатаDataGrid.Visibility = Visibility.Hidden;
-                послугиDataGrid.Visibility = Visibility.Hidden;
-            }
-            if (tablesmoder.SelectedIndex == 0)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Hidden;
-                оплатаDataGrid.Visibility = Visibility.Hidden;
-                послугиDataGrid.Visibility = Visibility.Visible;
-            }
-            if (tablesmoder.SelectedIndex == 1)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Hidden;
-                оплатаDataGrid.Visibility = Visibility.Visible;
-                послугиDataGrid.Visibility = Visibility.Hidden;
-            }
-            if (tablesmoder.SelectedIndex == 2)
-            {
-                usersDataGrid.Visibility = Visibility.Hidden;
-                flatsDataGrid.Visibility = Visibility.Visible;
-                оплатаDataGrid.Visibility = Visibility.Hidden;
-                послугиDataGrid.Visibility = Visibility.Hidden;
-            }
+                Flats.Visibility = Visibility.Hidden;
+                Users.Visibility = Visibility.Visible;
+                Pays.Visibility = Visibility.Hidden;
+                Poslugs.Visibility = Visibility.Hidden;
 
+                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                strConn["Data Source"] = "../../HomeManagment.sdf";
+                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                try
+                {
+                    ConnCe.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                SqlCeCommand cmd = new SqlCeCommand("Select * From [Users]", ConnCe);
+
+                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dr.Read())
+                    {
+                        users_list.Items.Add(dr.GetValue(1).ToString());
+                    }
+                    ConnCe.Close();
+                    ConnCe.Dispose();
+                }
+                
+            }
+            if (tablesChn.SelectedIndex == 3 || tablesmoder.SelectedIndex == 2)
+            {
+                Flats.Visibility = Visibility.Visible;
+                Users.Visibility = Visibility.Hidden;
+                Pays.Visibility = Visibility.Hidden;
+                Poslugs.Visibility = Visibility.Hidden;
+                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                strConn["Data Source"] = "../../HomeManagment.sdf";
+                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                try
+                {
+                    ConnCe.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                SqlCeCommand cmd = new SqlCeCommand("Select * From [Flats]", ConnCe);
+
+                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dr.Read())
+                    {
+                        numbers.Items.Add(dr.GetValue(7).ToString());
+                    }
+                    ConnCe.Close();
+                    ConnCe.Dispose();
+                }
+            }
+            if (tablesChn.SelectedIndex == 1 || tablesmoder.SelectedIndex == 0)
+            {
+                Flats.Visibility = Visibility.Hidden;
+                Users.Visibility = Visibility.Hidden;
+                Pays.Visibility = Visibility.Hidden;
+                Poslugs.Visibility = Visibility.Visible;
+                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                strConn["Data Source"] = "../../HomeManagment.sdf";
+                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                try
+                {
+                    ConnCe.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                SqlCeCommand cmd = new SqlCeCommand("Select * From [Полсуги]", ConnCe);
+
+                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dr.Read())
+                    {
+                        poslugi.Items.Add(dr.GetValue(0).ToString()+dr.GetValue(1).ToString());
+                    }
+                    ConnCe.Close();
+                    ConnCe.Dispose();
+                }
+              
+            }
+            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
+            {
+                Flats.Visibility = Visibility.Hidden;
+                Users.Visibility = Visibility.Hidden;
+                Pays.Visibility = Visibility.Visible;
+                Poslugs.Visibility = Visibility.Hidden;
+                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                strConn["Data Source"] = "../../HomeManagment.sdf";
+                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                try
+                {
+                    ConnCe.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                SqlCeCommand cmd = new SqlCeCommand("Select * From [Оплата]", ConnCe);
+
+                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dr.Read())
+                    {
+                        upays.Items.Add(dr.GetValue(1).ToString() + dr.GetValue(2).ToString());
+                    }
+                    ConnCe.Close();
+                    ConnCe.Dispose();
+                }
+                
+            }
+           
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
@@ -103,52 +179,60 @@ namespace Home_managment
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 50);
             dispatcherTimer.Start();
-            Home_managment.HomeManagmentDataSet homeManagmentDataSet = ((Home_managment.HomeManagmentDataSet)(this.FindResource("homeManagmentDataSet")));
-            // Загрузить данные в таблицу Flats. Можно изменить этот код как требуется.
-            Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter homeManagmentDataSetFlatsTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.FlatsTableAdapter();
-            homeManagmentDataSetFlatsTableAdapter.Fill(homeManagmentDataSet.Flats);
-            System.Windows.Data.CollectionViewSource flatsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("flatsViewSource")));
-            flatsViewSource.View.MoveCurrentToFirst();
-            // Загрузить данные в таблицу Users. Можно изменить этот код как требуется.
-            Home_managment.HomeManagmentDataSetTableAdapters.UsersTableAdapter homeManagmentDataSetUsersTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.UsersTableAdapter();
-            homeManagmentDataSetUsersTableAdapter.Fill(homeManagmentDataSet.Users);
-            System.Windows.Data.CollectionViewSource usersViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("usersViewSource")));
-            usersViewSource.View.MoveCurrentToFirst();
-            // Загрузить данные в таблицу Оплата. Можно изменить этот код как требуется.
-            Home_managment.HomeManagmentDataSetTableAdapters.ОплатаTableAdapter homeManagmentDataSetОплатаTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.ОплатаTableAdapter();
-            homeManagmentDataSetОплатаTableAdapter.Fill(homeManagmentDataSet.Оплата);
-            System.Windows.Data.CollectionViewSource оплатаViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("оплатаViewSource")));
-            оплатаViewSource.View.MoveCurrentToFirst();
-            // Загрузить данные в таблицу Послуги. Можно изменить этот код как требуется.
-            Home_managment.HomeManagmentDataSetTableAdapters.ПослугиTableAdapter homeManagmentDataSetПослугиTableAdapter = new Home_managment.HomeManagmentDataSetTableAdapters.ПослугиTableAdapter();
-            System.Windows.Data.CollectionViewSource послугиViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("послугиViewSource")));
-            послугиViewSource.View.MoveCurrentToFirst();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-           
+         
+            if (tablesChn.SelectedIndex == 0)
+            {
+                if (userlogin.Text != "")
+                {
+                    string uroles;
 
-            SqlCeDataAdapter sqlda=new SqlCeDataAdapter();
-            try
-            {
-                //sqlda.Update((DataTable)usersDataGrid.ItemsSource);
-                //flatsDataGrid.Items.Refresh();
-                //оплатаDataGrid.Items.Refresh();
-                //    послугиDataGrid.Items.Refresh();
-                //sqlda.Update((DataTable)usersDataGrid.ItemsSource);
-                //    sqlda.Update((DataTable)flatsDataGrid.ItemsSource);
-                //    sqlda.Update((DataTable)оплатаDataGrid.ItemsSource);
-                //    sqlda.Update((DataTable)послугиDataGrid.ItemsSource);
-                 
-                MessageBox.Show("Изменения в базе данных выполнены!",
-                  "Уведомление о результатах");
+                    if (roles.SelectedIndex == 0)
+                    {
+                        uroles = "Admin";
+                        con.ChangeRole(uroles, userlogin.Text);
+                    }
+                    if (roles.SelectedIndex == 1)
+                    {
+                        uroles = "User";
+                        con.ChangeRole(uroles, userlogin.Text);
+                    }
+                    if (roles.SelectedIndex == 2)
+                    {
+                        uroles = "Moder";
+                        con.ChangeRole(uroles, userlogin.Text);
+                    }
+                }
+                else MessageBox.Show("Некоректна інформація");
             }
-            catch (Exception)
+            if (tablesChn.SelectedIndex == 3 || tablesmoder.SelectedIndex == 2)
             {
-                MessageBox.Show("Изменения в базе данных выполнить не удалось!",
-                  "Уведомление о результатах");
+                if (streetTextBox.Text != "" && homeTextBox.Text != "" && flatTextBox.Text != "" && surnameTextBox.Text != "" && nameTextBox.Text != "" && lastnameTextBox.Text != "" && phoneTextBox.Text != "" && sumTextBox.Text != "")
+                {
+                    con.NewAbon(streetTextBox.Text,homeTextBox.Text,flatTextBox.Text,surnameTextBox.Text,nameTextBox.Text,lastnameTextBox.Text,Convert.ToInt32(phoneTextBox.Text),sumTextBox.Text);
+                }
+                else MessageBox.Show("Некоректна інформація");
             }
+            if (tablesChn.SelectedIndex == 1 || tablesmoder.SelectedIndex == 0)
+            {
+               if (назваTextBox.Text!="" && цінаTextBox.Text!="")
+                {
+                    con.NewPosl(назваTextBox.Text,цінаTextBox.Text);
+                }
+                else MessageBox.Show("Некоректна інформація");
+            }
+            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
+            {
+                if (дата_РеєстраціїDatePicker.DataContext!=null || _Місяць_РікDatePicker.DataContext!=null)
+                {
+                    con.NewPay(дата_РеєстраціїDatePicker.DataContext, _Місяць_РікDatePicker.DataContext);
+                }
+                else MessageBox.Show("Некоректна інформація");
+            }
+ 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
