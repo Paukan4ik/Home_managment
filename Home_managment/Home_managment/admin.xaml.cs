@@ -66,7 +66,7 @@ namespace Home_managment
                 {
                     while (dr.Read())
                     {
-                        users_list.Items.Add(dr.GetValue(1).ToString());
+                        users_list.Items.Add(dr.GetValue(1).ToString() +"  "+ dr.GetValue(4).ToString());
                     }
                     ConnCe.Close();
                     ConnCe.Dispose();
@@ -127,7 +127,7 @@ namespace Home_managment
                 {
                     while (dr.Read())
                     {
-                        poslugi.Items.Add(dr.GetValue(0).ToString()+dr.GetValue(1).ToString());
+                        poslugi.Items.Add(dr.GetValue(0).ToString() + "  " + dr.GetValue(1).ToString());
                     }
                     ConnCe.Close();
                     ConnCe.Dispose();
@@ -158,7 +158,7 @@ namespace Home_managment
                 {
                     while (dr.Read())
                     {
-                        upays.Items.Add(dr.GetValue(1).ToString() + dr.GetValue(2).ToString());
+                        upays.Items.Add(dr.GetValue(1).ToString() + "  " + dr.GetValue(2).ToString());
                     }
                     ConnCe.Close();
                     ConnCe.Dispose();
@@ -228,7 +228,7 @@ namespace Home_managment
             {
                 if (дата_РеєстраціїDatePicker.DataContext!=null || _Місяць_РікDatePicker.DataContext!=null)
                 {
-                    con.NewPay(дата_РеєстраціїDatePicker.DataContext, _Місяць_РікDatePicker.DataContext);
+                    con.NewPay(Convert.ToString(дата_РеєстраціїDatePicker.DataContext),Convert.ToString( _Місяць_РікDatePicker.DataContext));
                 }
                 else MessageBox.Show("Некоректна інформація");
             }

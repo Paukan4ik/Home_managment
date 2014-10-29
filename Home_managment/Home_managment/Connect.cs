@@ -252,7 +252,7 @@ namespace Home_managment
             ConnCe.Dispose();
         }
 
-        public void NewAbon(string street, string home, string flat, string surname,string name,string lastname,int phone, string summ)
+        public void NewAbon(string street, string home, string flat, string surname,string name,string lastname,int phone, string sum)
         {
             SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
             strConn["Data Source"] = "../../HomeManagment.sdf";
@@ -268,7 +268,7 @@ namespace Home_managment
             }
 
             using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Flats]" +
-                "(Street,Home,Flat,Surname,Name,Lastname,Phone,Sum) Values (@Street,@Home,@Flat,@Surname,@Name,@Lastname,@Phone,@Summ)", ConnCe))
+                "(Street,Home,Flat,Surname,Name,Lastname,Phone,Sum) Values (@Street,@Home,@Flat,@Surname,@Name,@Lastname,@Phone,@Sum)", ConnCe))
             {
                 cmd.Parameters.AddWithValue("@Street", street);
                 cmd.Parameters.AddWithValue("@Home", home);
@@ -277,7 +277,7 @@ namespace Home_managment
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Lastname", lastname);
                 cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Sum", summ);
+                cmd.Parameters.AddWithValue("@Sum", sum);
                 cmd.ExecuteNonQuery();
             }
 
@@ -299,7 +299,7 @@ namespace Home_managment
                 MessageBox.Show(ex.Message);
             }
 
-            using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Послуги]" +
+            using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Полсуги]" +
                 "(Назва,Ціна) Values (@Nazv,@price)", ConnCe))
             {
                 cmd.Parameters.AddWithValue("@Nazv", nazv);
@@ -310,7 +310,7 @@ namespace Home_managment
             ConnCe.Close();
             ConnCe.Dispose();
         }
-        public void NewPay(object regtime, object my)
+        public void NewPay(string regtime, string my)
         {
             SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
             strConn["Data Source"] = "../../HomeManagment.sdf";
@@ -326,7 +326,7 @@ namespace Home_managment
             }
 
             using (SqlCeCommand cmd = new SqlCeCommand("Insert into [Оплата]" +
-                "(Дата Реєстрації,Місяць/Рік) Values (@regtime,@my)", ConnCe))
+                "(Дата_Реєстрації,Місяць_Рік) Values (@regtime,@my)", ConnCe))
             {
                 cmd.Parameters.AddWithValue("@regtime", regtime);
                 cmd.Parameters.AddWithValue("@my", my);
