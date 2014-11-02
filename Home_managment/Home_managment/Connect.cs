@@ -336,6 +336,35 @@ namespace Home_managment
             ConnCe.Close();
             ConnCe.Dispose();
         }
+        public void Delete(string tl)
+        {
+            SqlConnectionStringBuilder strConnect = new SqlConnectionStringBuilder();
+            strConnect["Data Source"] = "..\\..\\HomeManagment.sdf";
+            SqlCeConnection connect = new SqlCeConnection(strConnect.ConnectionString);
+
+            try
+            {
+                connect.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlCeCommand cmd = new SqlCeCommand("Delete [Полсуги] Where [Назва] = '" + tl + "';", connect);
+
+            using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+            {
+                while (dr.Read())
+                {
+
+                }
+            }
+
+            connect.Close();
+            connect.Dispose();
+
+        }
 
     }
 }

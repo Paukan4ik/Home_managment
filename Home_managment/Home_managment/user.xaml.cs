@@ -22,8 +22,7 @@ namespace Home_managment
        public user()
         {
             InitializeComponent();
-            Message.Text = "Для реєстрації/внесення Вших данних надішліть лист з заповненим бланком до  Вашого Районного ЖКГ";
-            this.Background = Home_managment.Properties.Settings.Default.Color; 
+            Message.Text = "Для реєстрації/внесення Вших данних надішліть лист з заповненим бланком до  Вашого Районного ЖКГ"; 
         }
 
         private void Print_Click(object sender, RoutedEventArgs e)

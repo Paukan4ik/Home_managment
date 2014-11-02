@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Підтвердження" Height="158.209" Width="344.777" WindowStartupLocation="CenterScreen" Closed="Window_Closed_1">
     <Grid>
-        <TextBox x:Name="phone" HorizontalAlignment="Right" Height="44" Margin="0,10,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" VerticalContentAlignment="Center" KeyUp="Go_KeyUp"/>
+        <TextBox x:Name="phone" HorizontalAlignment="Right" Height="44" Margin="0,10,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" VerticalContentAlignment="Center" KeyUp="Go_KeyUp" PreviewTextInput="phone_PreviewTextInput"/>
         <Button x:Name="Go" Content="Увійти в панель користувача" HorizontalAlignment="Left" Height="44" Margin="22,74,0,0" VerticalAlignment="Top" Width="290" VerticalContentAlignment="Center" Click="Button_Click_1" KeyUp="Go_KeyUp"/>
         <Button x:Name="Print" Content="Переглянути і роздрукувати рахунок" HorizontalAlignment="Left" Height="100" Margin="-22,158,0,-131" VerticalAlignment="Top" Width="75"/>
         <TextBlock x:Name="label" HorizontalAlignment="Left" Height="188" Margin="25,158,0,-219" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>

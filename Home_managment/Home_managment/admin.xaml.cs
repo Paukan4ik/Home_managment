@@ -29,7 +29,8 @@ namespace Home_managment
         public Window1()
         {
             InitializeComponent();
-            
+            this.phoneTextBox.PreviewTextInput += new TextCompositionEventHandler(phoneTextBox_PreviewTextInput);
+                 this.sumTextBox.PreviewTextInput += new TextCompositionEventHandler(sumTextBox_PreviewTextInput);
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
@@ -43,9 +44,12 @@ namespace Home_managment
           
             if (tablesChn.SelectedIndex == 0)
             {
+                poslugi.Items.Clear();
+                numbers.Items.Clear();
+                users_list.Items.Clear();
+                delete.Visibility = Visibility.Hidden;
                 Flats.Visibility = Visibility.Hidden;
                 Users.Visibility = Visibility.Visible;
-                Pays.Visibility = Visibility.Hidden;
                 Poslugs.Visibility = Visibility.Hidden;
 
                 SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
@@ -73,11 +77,14 @@ namespace Home_managment
                 }
                 
             }
-            if (tablesChn.SelectedIndex == 3 || tablesmoder.SelectedIndex == 2)
+            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
             {
+                poslugi.Items.Clear();
+                numbers.Items.Clear();
+                users_list.Items.Clear();
+                delete.Visibility = Visibility.Hidden;
                 Flats.Visibility = Visibility.Visible;
                 Users.Visibility = Visibility.Hidden;
-                Pays.Visibility = Visibility.Hidden;
                 Poslugs.Visibility = Visibility.Hidden;
                 SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
                 strConn["Data Source"] = "../../HomeManagment.sdf";
@@ -105,9 +112,12 @@ namespace Home_managment
             }
             if (tablesChn.SelectedIndex == 1 || tablesmoder.SelectedIndex == 0)
             {
+                poslugi.Items.Clear();
+                numbers.Items.Clear();
+                users_list.Items.Clear();
+                delete.Visibility = Visibility.Visible;
                 Flats.Visibility = Visibility.Hidden;
                 Users.Visibility = Visibility.Hidden;
-                Pays.Visibility = Visibility.Hidden;
                 Poslugs.Visibility = Visibility.Visible;
                 SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
                 strConn["Data Source"] = "../../HomeManagment.sdf";
@@ -127,44 +137,14 @@ namespace Home_managment
                 {
                     while (dr.Read())
                     {
-                        poslugi.Items.Add(dr.GetValue(0).ToString() + "  " + dr.GetValue(1).ToString());
+                        poslugi.Items.Add(dr.GetValue(0).ToString());
                     }
                     ConnCe.Close();
                     ConnCe.Dispose();
                 }
               
             }
-            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
-            {
-                Flats.Visibility = Visibility.Hidden;
-                Users.Visibility = Visibility.Hidden;
-                Pays.Visibility = Visibility.Visible;
-                Poslugs.Visibility = Visibility.Hidden;
-                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
-                strConn["Data Source"] = "../../HomeManagment.sdf";
-                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
-
-                try
-                {
-                    ConnCe.Open();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                SqlCeCommand cmd = new SqlCeCommand("Select * From [Оплата]", ConnCe);
-
-                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                {
-                    while (dr.Read())
-                    {
-                        upays.Items.Add(dr.GetValue(1).ToString() + "  " + dr.GetValue(2).ToString());
-                    }
-                    ConnCe.Close();
-                    ConnCe.Dispose();
-                }
-                
-            }
+          
            
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -186,6 +166,9 @@ namespace Home_managment
          
             if (tablesChn.SelectedIndex == 0)
             {
+                poslugi.Items.Clear();
+                numbers.Items.Clear();
+                users_list.Items.Clear();
                 if (userlogin.Text != "")
                 {
                     string uroles;
@@ -205,14 +188,72 @@ namespace Home_managment
                         uroles = "Moder";
                         con.ChangeRole(uroles, userlogin.Text);
                     }
+                    SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                    strConn["Data Source"] = "../../HomeManagment.sdf";
+                    SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                    try
+                    {
+                        ConnCe.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    SqlCeCommand cmd = new SqlCeCommand("Select * From [Users]", ConnCe);
+
+                    using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dr.Read())
+                        {
+                            users_list.Items.Add(dr.GetValue(1).ToString() + "  " + dr.GetValue(4).ToString());
+                        }
+                        ConnCe.Close();
+                        ConnCe.Dispose();
+                    }
+                    userlogin.Clear();
                 }
                 else MessageBox.Show("Некоректна інформація");
             }
-            if (tablesChn.SelectedIndex == 3 || tablesmoder.SelectedIndex == 2)
+            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
             {
                 if (streetTextBox.Text != "" && homeTextBox.Text != "" && flatTextBox.Text != "" && surnameTextBox.Text != "" && nameTextBox.Text != "" && lastnameTextBox.Text != "" && phoneTextBox.Text != "" && sumTextBox.Text != "")
                 {
+                    poslugi.Items.Clear();
+                    numbers.Items.Clear();
+                    users_list.Items.Clear();
                     con.NewAbon(streetTextBox.Text,homeTextBox.Text,flatTextBox.Text,surnameTextBox.Text,nameTextBox.Text,lastnameTextBox.Text,Convert.ToInt32(phoneTextBox.Text),sumTextBox.Text);
+                    SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                    strConn["Data Source"] = "../../HomeManagment.sdf";
+                    SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                    try
+                    {
+                        ConnCe.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    SqlCeCommand cmd = new SqlCeCommand("Select * From [Flats]", ConnCe);
+
+                    using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dr.Read())
+                        {
+                            numbers.Items.Add(dr.GetValue(7).ToString());
+                        }
+                        ConnCe.Close();
+                        ConnCe.Dispose();
+                    }
+                    nameTextBox.Clear();
+                    streetTextBox.Clear();
+                    flatTextBox.Clear();
+                    homeTextBox.Clear();
+                    sumTextBox.Clear();
+                    surnameTextBox.Clear();
+                    lastnameTextBox.Clear();
+
                 }
                 else MessageBox.Show("Некоректна інформація");
             }
@@ -220,15 +261,37 @@ namespace Home_managment
             {
                if (назваTextBox.Text!="" && цінаTextBox.Text!="")
                 {
-                    con.NewPosl(назваTextBox.Text,цінаTextBox.Text);
-                }
-                else MessageBox.Show("Некоректна інформація");
-            }
-            if (tablesChn.SelectedIndex == 2 || tablesmoder.SelectedIndex == 1)
-            {
-                if (дата_РеєстраціїDatePicker.DataContext!=null || _Місяць_РікDatePicker.DataContext!=null)
-                {
-                    con.NewPay(Convert.ToString(дата_РеєстраціїDatePicker.DataContext),Convert.ToString( _Місяць_РікDatePicker.DataContext));
+                    poslugi.Items.Clear();
+                    numbers.Items.Clear();
+                    users_list.Items.Clear(); 
+                   con.NewPosl(назваTextBox.Text,цінаTextBox.Text);
+
+                    SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                    strConn["Data Source"] = "../../HomeManagment.sdf";
+                    SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                    try
+                    {
+                        ConnCe.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    SqlCeCommand cmd = new SqlCeCommand("Select * From [Полсуги]", ConnCe);
+
+                    using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        while (dr.Read())
+                        {
+                            poslugi.Items.Add(dr.GetValue(0).ToString());
+                        }
+                        ConnCe.Close();
+                        ConnCe.Dispose();
+                    }
+                    назваTextBox.Clear();
+                    цінаTextBox.Clear();
+
                 }
                 else MessageBox.Show("Некоректна інформація");
             }
@@ -245,6 +308,63 @@ namespace Home_managment
             MessageBox.Show("Способи оплати: \n1.Через термінал \n2.В відділенні банку \n3.В відділенні ЖЕК \n4.Через платіжні системи Приват24");
         }
 
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+        
+                if (poslugi.SelectedItem != null)
+                {
+                    string tl = poslugi.SelectedItem.ToString();
+                    con.Delete(tl);
+                    poslugi.Items.Clear();
+                   
+                }
+            
+
+        }
+
+        private void phoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void sumTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void poslugi_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (poslugi.SelectedItem != null)
+            {
+                string tl = poslugi.SelectedItem.ToString();
+                SqlConnectionStringBuilder strConn = new SqlConnectionStringBuilder();
+                strConn["Data Source"] = "../../HomeManagment.sdf";
+                SqlCeConnection ConnCe = new SqlCeConnection(strConn.ConnectionString);
+
+                try
+                {
+                    ConnCe.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                SqlCeCommand cmd = new SqlCeCommand("Select * From [Полсуги] Where [Назва] = '" + tl + "';", ConnCe);
+
+                using (SqlCeDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (dr.Read())
+                    {
+                        MessageBox.Show("Назва послуги: "+dr.GetValue(0).ToString() + "\nЦіна: " + dr.GetValue(1).ToString() + " грн.");
+                    }
+                    ConnCe.Close();
+                    ConnCe.Dispose();
+                }
+
+            }
+        }
+
+    
 
     }
 }
